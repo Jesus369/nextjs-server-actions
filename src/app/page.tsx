@@ -1,32 +1,36 @@
 import Image from 'next/image'
+import { json } from 'stream/consumers';
+import { Product } from '../../typings';
+import addProductToDatabase from './server/serverActions';
 
-type Product = {
-  product: string;
-  price: string;
-  id: string;
-}
 
 export default async function Home() {
 
   const res = await fetch("https://650dd2cca8b42265ec2cbb50.mockapi.io/Products", {
-    cache: "no-cache"
+    cache: "no-cache",
+    next: {
+      tags: ["Products"]
+    }
   })
 
   const products: Product[] = await res.json()
-  console.log(products)
+
+
   
   return (
     <main>
       <h1 className="text-3xl text-center font-bold">Products Warehosue</h1>
 
-      <form className="flex flex-col gap-5 max-w-xl mx-auto p-5" action="">
+      <form action={addProductToDatabase} className="flex flex-col gap-5 max-w-xl mx-auto p-5">
         <input
           className="border border-gray-300 p-2 rounded-md"
           placeholder="Enter Product Name..."
+          name="product"
           type="text"/>
         <input 
           className="border border-gray-300 p-2 rounded-md" 
           placeholder="Enter Price Name...."
+          name="price"
           type="text"/>
         <button className="border bg-blue-500 text-white p-2 rounded-md">Add Product</button>
       </form>
