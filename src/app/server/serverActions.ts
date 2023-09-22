@@ -1,9 +1,9 @@
 "use server"
+
 import { revalidateTag } from 'next/cache';
 import { Product } from "../../../typings"
 
 const addProductToDatabase = async (e:FormData) => {
-    "use server"
 
     const product = e.get("product")?.toString()
     const price = e.get('price')?.toString()

@@ -3,6 +3,9 @@ import { json } from 'stream/consumers';
 import { Product } from '../../typings';
 import addProductToDatabase from './server/serverActions';
 
+import AddProductButton from './component/addProductButton';
+
+
 
 export default async function Home() {
 
@@ -20,6 +23,7 @@ export default async function Home() {
   return (
     <main>
       <h1 className="text-3xl text-center font-bold">Products Warehosue</h1>
+      <AddProductButton />
 
       <form action={addProductToDatabase} className="flex flex-col gap-5 max-w-xl mx-auto p-5">
         <input
