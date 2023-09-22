@@ -3,7 +3,7 @@ import { json } from 'stream/consumers';
 import { Product } from '../../typings';
 import addProductToDatabase from './server/serverActions';
 
-import AddProductButton from './component/addProductButton';
+import AddProductButton from './component/AddProductButton';
 
 
 
